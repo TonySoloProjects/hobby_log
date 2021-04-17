@@ -8,7 +8,7 @@ from .forms import TopicForm, EntryForm
 # Create your views here.
 def index(request):
     print(f'in index()')
-    return render(request, "main_app/index.html")
+    return render(request, "hobby/index.html")
 
 @login_required
 def view_topics(request):
@@ -20,7 +20,7 @@ def view_topics(request):
     context = {
         "topics": queryset
     }
-    return render(request, "main_app/topics.html", context)
+    return render(request, "hobby/topics.html", context)
 
 @login_required
 def view_topic(request, topic_id):
@@ -36,7 +36,7 @@ def view_topic(request, topic_id):
         "topic": topic,
         "entries": entries
     }
-    return render(request, "main_app/topic.html", context)
+    return render(request, "hobby/topic.html", context)
 
 @login_required
 def delete_topic(request, topic_id):
@@ -49,13 +49,13 @@ def delete_topic(request, topic_id):
     if request.method == 'POST':
         print(f'processing post request')
         topic.delete()
-        return redirect('main_app:view_topics')
+        return redirect('hobby:view_topics')
 
     context = {
         'topic': topic
     }
 
-    return render(request, "main_app/delete_topic.html", context)
+    return render(request, "hobby/delete_topic.html", context)
 
 
 @login_required
@@ -70,7 +70,7 @@ def create_topic(request):
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
             new_topic.save()
-            return redirect('main_app:view_topics')
+            return redirect('hobby:view_topics')
         else:
             print('form not valid')
     else:
@@ -81,7 +81,7 @@ def create_topic(request):
     context = {
         "form": form,
     }
-    return render(request, "main_app/create_topic.html", context)
+    return render(request, "hobby/create_topic.html", context)
 
 
 @login_required
@@ -103,7 +103,7 @@ def create_entry(request, topic_id=0):
             form.save()
             # print(vars(form.cleaned_data['topic']))
             my_id = form.cleaned_data['topic'].id
-            return redirect('main_app:view_topic', my_id)
+            return redirect('hobby:view_topic', my_id)
         else:
             print('form not valid')
     else:
@@ -115,7 +115,7 @@ def create_entry(request, topic_id=0):
     context = {
         "form": form,
     }
-    return render(request, "main_app/create_entry.html", context)
+    return render(request, "hobby/create_entry.html", context)
 
 @login_required
 def edit_entry(request, entry_id):
@@ -137,7 +137,7 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             my_id = form.cleaned_data['topic'].id
-            return redirect('main_app:view_topic', my_id)
+            return redirect('hobby:view_topic', my_id)
         else:
             print('form not valid')
     else:
@@ -150,4 +150,4 @@ def edit_entry(request, entry_id):
         "form": form,
         "entry": entry
     }
-    return render(request, "main_app/edit_entry.html", context)
+    return render(request, "hobby/edit_entry.html", context)

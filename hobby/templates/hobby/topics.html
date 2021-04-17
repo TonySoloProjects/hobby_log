@@ -1,4 +1,4 @@
-{% extends 'main_app/base.html' %}
+{% extends 'hobby/base.html' %}
 
 {% load bootstrap4 %}
 
@@ -11,19 +11,19 @@
 
     <button type="button"
             class="btn btn-primary"
-            onclick="location.href='{% url 'main_app:create_topic' %}'"
+            onclick="location.href='{% url 'hobby:create_topic' %}'"
             name='create_topic'>Create New Topic</button>
 
     {% if topics %}
     <button type="button"
             class="btn btn-primary"
-            onclick="location.href='{% url 'main_app:create_entry' %}'"
+            onclick="location.href='{% url 'hobby:create_entry' %}'"
             name='create_topic'>Create New Entry</button>
     {% else %}
     <button type="button"
             class="btn btn-primary"
             disabled
-            onclick="location.href='{% url 'main_app:create_entry' %}'"
+            onclick="location.href='{% url 'hobby:create_entry' %}'"
             name='create_topic'>Create New Entry</button>
 
     {% endif %}
@@ -32,7 +32,7 @@
 
     <ul>
         {% for topic in topics %}
-            <li><h3><a href="{% url 'main_app:view_topic' topic.id %}">
+            <li><h3><a href="{% url 'hobby:view_topic' topic.id %}">
                 {{ topic.text }}</a>
             </h3></li>
         {% empty %}

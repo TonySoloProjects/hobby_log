@@ -1,4 +1,4 @@
-{% extends 'main_app/base.html' %}
+{% extends 'hobby/base.html' %}
 
 {% load bootstrap4 %}
 
@@ -12,12 +12,12 @@
 {% buttons %}
 <button type="button"
         class="btn btn-primary"
-        onclick="location.href='{% url 'main_app:create_entry_with_id' topic.id %}'"
+        onclick="location.href='{% url 'hobby:create_entry_with_id' topic.id %}'"
         name='create_new_entry'>Create New Entry</button>
 
 <button type="button"
         class="btn btn-primary"
-        onclick="location.href='{% url 'main_app:delete_topic' topic.id %}'"
+        onclick="location.href='{% url 'hobby:delete_topic' topic.id %}'"
         name='delete_topic'>Delete This Topic</button>
 {% endbuttons %}
 
@@ -26,7 +26,7 @@
         <div class="card mb-3">
             <h4 class="card-header">
                 {{ entry.date_added|date:'M d, Y H:i:s' }}
-                <small> <a href="{% url 'main_app:edit_entry' entry.id %}">
+                <small> <a href="{% url 'hobby:edit_entry' entry.id %}">
                     Edit Entry</a> </small>
             </h4>
             <div class="card-body">
