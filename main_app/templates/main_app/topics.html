@@ -1,0 +1,43 @@
+{% extends 'main_app/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h1>Available Topics</h1>
+{% endblock page_header %}
+
+{% block content %}
+    {% buttons %}
+
+    <button type="button"
+            class="btn btn-primary"
+            onclick="location.href='{% url 'main_app:create_topic' %}'"
+            name='create_topic'>Create New Topic</button>
+
+    {% if topics %}
+    <button type="button"
+            class="btn btn-primary"
+            onclick="location.href='{% url 'main_app:create_entry' %}'"
+            name='create_topic'>Create New Entry</button>
+    {% else %}
+    <button type="button"
+            class="btn btn-primary"
+            disabled
+            onclick="location.href='{% url 'main_app:create_entry' %}'"
+            name='create_topic'>Create New Entry</button>
+
+    {% endif %}
+
+    {% endbuttons %}
+
+    <ul>
+        {% for topic in topics %}
+            <li><h3><a href="{% url 'main_app:view_topic' topic.id %}">
+                {{ topic.text }}</a>
+            </h3></li>
+        {% empty %}
+            <li><h3>No topics defined yet ...</h3></li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

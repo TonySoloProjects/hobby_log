@@ -1,0 +1,42 @@
+{% extends 'main_app/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>Topic {{ topic }} Entries</h3>
+{% endblock page_header %}
+
+
+{% block content %}
+
+{% buttons %}
+<button type="button"
+        class="btn btn-primary"
+        onclick="location.href='{% url 'main_app:create_entry_with_id' topic.id %}'"
+        name='create_new_entry'>Create New Entry</button>
+
+<button type="button"
+        class="btn btn-primary"
+        onclick="location.href='{% url 'main_app:delete_topic' topic.id %}'"
+        name='delete_topic'>Delete This Topic</button>
+{% endbuttons %}
+
+
+    {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'M d, Y H:i:s' }}
+                <small> <a href="{% url 'main_app:edit_entry' entry.id %}">
+                    Edit Entry</a> </small>
+            </h4>
+            <div class="card-body">
+                <p>{{ entry.text|linebreaks }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>There are no entries for this topic yet.</p>
+    {% endfor %}
+
+
+
+{% endblock content %}

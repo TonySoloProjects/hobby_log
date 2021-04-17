@@ -1,0 +1,14 @@
+{% extends "main_app/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Track your hobbies.</h1>
+
+    <p class="lead">Make your own hobby log to track your activity
+        and improvements in your favorite hobbies.  Whenever you learn something new
+        about a hobby, make an entry summarizing what you've learned.</p>
+
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+        role="button">Register &raquo;</a>
+  </div>
+{% endblock page_header %}

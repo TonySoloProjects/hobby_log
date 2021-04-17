@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h1>Confirmation of {{ topic }} Deletion</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <h4>Are you sure you want to delete the topic: "{{ topic }}"? </h4>
+  <p>Note, this will also delete any entries for this topic.</p>
+  {% buttons %}
+    <button name="submit" class="btn btn-danger">Delete</button>
+    <button type="button"
+            class="btn btn-primary"
+            onclick="location.href='{% url 'main_app:view_topic' topic.id %}'"
+            name='delete_topic'>Cancel Delete</button>
+  {% endbuttons %}
+</form>
+
+{% endblock content %}
+
+
+
+
