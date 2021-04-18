@@ -25,12 +25,14 @@ SECRET_KEY = 'django-insecure-%@rvev6xg($zyo=_5254v7(i09+&j7#_(pwt_dtf1)k$*#r!y2
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('DJANGO_DEBUG_MODE') == 'FALSE':
+    print('Running Django in Production Mode ...')
     DEBUG = False
 else:
     print('Running Django in DEBUG Mode ...')
     DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -67,8 +69,9 @@ ROOT_URLCONF = 'hobby_log.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         # 'DIRS': [BASE_DIR / 'templates'],
-        'DIRS': [],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

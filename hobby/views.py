@@ -26,7 +26,8 @@ def view_topics(request):
 def view_topic(request, topic_id):
     print(f'in view_topic()')
 
-    topic = Topic.objects.get(id=topic_id)
+    # topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     if topic.owner != request.user:
         raise Http404
 
@@ -42,7 +43,9 @@ def view_topic(request, topic_id):
 def delete_topic(request, topic_id):
     print(f'in delete_topic()')
 
-    topic = Topic.objects.get(id=topic_id)
+    # topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
+
     if topic.owner != request.user:
         raise Http404
 
@@ -123,7 +126,8 @@ def edit_entry(request, entry_id):
     print(f'in edit_entry()')
     print(f'{request.method=}')
 
-    entry = Entry.objects.get(id=entry_id)
+    # entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry, id=entry_id)
 
     if entry.topic.owner != request.user:
         raise Http404
