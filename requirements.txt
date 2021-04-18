@@ -106,7 +106,6 @@ psycopg2==2.8.6
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
 pycparser==2.20
-pygame==1.9.6
 Pygments==2.8.1
 PyInstaller==3.4
 PyJWT==2.0.1
