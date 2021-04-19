@@ -1,3 +1,13 @@
+"""
+Hobby django views to allow users to create hobby topics and journal
+log entries associated with their favorite hobbies.
+
+Created by: Tony Held tony.held@gmail.com
+Created on: 2021/04/18
+Copyright © 2021 Tony Held.  All rights reserved.
+"""
+
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -50,7 +60,7 @@ def delete_topic(request, topic_id):
         raise Http404
 
     if request.method == 'POST':
-        print(f'processing post request')
+        # Delete the topic if from a valid post form
         topic.delete()
         return redirect('hobby:view_topics')
 
@@ -67,7 +77,6 @@ def create_topic(request):
     print(f'{request.method=}')
 
     if request.method == 'POST':
-        print(f'processing post request')
         form = TopicForm(request.POST)
         if form.is_valid():
             new_topic = form.save(commit=False)
@@ -136,7 +145,6 @@ def edit_entry(request, entry_id):
     queryset = Topic.objects.filter(owner=request.user)
 
     if request.method == 'POST':
-        print(f'processing post request')
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()

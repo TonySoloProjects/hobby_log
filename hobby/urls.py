@@ -1,4 +1,4 @@
-# learning_logs\urls.py
+# hobby\urls.py
 
 from django.urls import path, include
 from . import views

@@ -1,3 +1,11 @@
+"""
+user django views to allow users to create and log into their accounts.
+
+Created by: Tony Held tony.held@gmail.com
+Created on: 2021/04/18
+Copyright © 2021 Tony Held.  All rights reserved.
+"""
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm

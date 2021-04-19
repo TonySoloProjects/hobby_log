@@ -1,6 +1,6 @@
 from django import forms
 from .models import Topic, Entry
-
+# forms based on models to be displayed via bootstrap
 
 class TopicForm(forms.ModelForm):
     class Meta:
